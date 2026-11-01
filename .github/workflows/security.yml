@@ -1,0 +1,19 @@
+name: Secrets Security Demo
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Application
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+        run: |
+          python app.py
